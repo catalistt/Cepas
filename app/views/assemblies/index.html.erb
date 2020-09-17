@@ -2,12 +2,12 @@
 
 <h1>Assemblies</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Percentage</th>
-      <th>Wine</th>
-      <th>Strain</th>
+      <th>Porcentaje</th>
+      <th>Vino</th>
+      <th>Cepa</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,7 +16,7 @@
     <% @assemblies.each do |assembly| %>
       <tr>
         <td><%= assembly.percentage %></td>
-        <td><%= assembly.wine %></td>
+        <td><%= assembly.wine  %></td>
         <td><%= assembly.strain %></td>
         <td><%= link_to 'Show', assembly %></td>
         <td><%= link_to 'Edit', edit_assembly_path(assembly) %></td>

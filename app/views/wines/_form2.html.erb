@@ -29,6 +29,20 @@
     <%end%>  
   </div>
 
+  <div class="form-group">
+  <%= form.label :grade, class: "control-label" %>
+  <%= form.text_field :score, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+      <%= form.label :enologists %>
+      <%= form.collection_check_boxes(:enologist_ids, Enologist.all, :id, :name) do |enologist| %>
+        <%= enologist.label class: 'label-checkbox' do %>
+          <% enologist.check_box + enologist.text %>
+        <% end %>
+      <% end%>
+  </div>
+
   <div class="actions">
     <%= form.submit "Save", class: "btn btn-success" %>
   </div>

@@ -15,6 +15,7 @@ class ScoresController < ApplicationController
   # GET /scores/new
   def new
     @score = Score.new
+    @enologists = Enologist.all.order(:age)
   end
 
   # GET /scores/1/edit

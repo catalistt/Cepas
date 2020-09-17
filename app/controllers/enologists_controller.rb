@@ -4,7 +4,7 @@ class EnologistsController < ApplicationController
   # GET /enologists
   # GET /enologists.json
   def index
-    @enologists = Enologist.all
+    @enologists = Enologist.all.order(:age)
   end
 
   # GET /enologists/1
@@ -69,6 +69,7 @@ class EnologistsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def enologist_params
-      params.require(:enologist).permit(:name)
+      params.require(:enologist).permit(:name, :age, :nationality, 
+      positions_attributes[:magazine_id, :name, :enologist_id])
     end
 end

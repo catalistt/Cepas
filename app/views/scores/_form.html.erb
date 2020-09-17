@@ -21,9 +21,13 @@
     <%= form.text_field :wine_id %>
   </div>
 
-  <div class="field">
-    <%= form.label :enologist_id %>
-    <%= form.text_field :enologist_id %>
+  <div class="form-group">
+      <%= form.label :enologist_id %>
+      <%= form.collection_check_boxes(:enologist_id, Enologist.all, :id, :name) do |enologist| %>
+        <%= enologist.label class: 'label-checkbox' do %>
+          <% enologist.check_box + enologist.text %>
+        <% end %>
+      <% end%>
   </div>
 
   <div class="actions">

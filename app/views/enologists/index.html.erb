@@ -2,10 +2,13 @@
 
 <h1>Enologists</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Nombre completo</th>
+      <th>Edad</th>
+      <th>Nacionalidad</th>
+      <th>Trabaja en</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,6 +17,9 @@
     <% @enologists.each do |enologist| %>
       <tr>
         <td><%= enologist.name %></td>
+        <td><%= enologist.age %></td>
+        <td><%= enologist.nationality %></td>
+        <td><%= enologist.work_in %></td>
         <td><%= link_to 'Show', enologist %></td>
         <td><%= link_to 'Edit', edit_enologist_path(enologist) %></td>
         <td><%= link_to 'Destroy', enologist, method: :delete, data: { confirm: 'Are you sure?' } %></td>

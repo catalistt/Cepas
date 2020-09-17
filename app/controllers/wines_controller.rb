@@ -5,6 +5,7 @@ class WinesController < ApplicationController
   # GET /wines.json
   def index
     @wines = Wine.all
+    @scores = Score.all
   end
 
   # GET /wines/1
@@ -15,6 +16,18 @@ class WinesController < ApplicationController
   # GET /wines/new
   def new
     @wine = Wine.new
+    @strains = Strain.all
+    @enologists = Enologist.all.order(:age)
+    @scores = Score.all
+    @strains.each do |strain|
+      @wine.assemblies.build(strain: strain)
+    end
+    
+    #IDEAS PARA GUARDAR SCORE EN EDIT
+    #@score = @wine.scores.build(grade: grade)
+    ##@score = @wine.scores.create(:grade=> grade)
+    #@wine.scores <<  Score.new(grade: grade)
+    #@score.save
   end
 
   # GET /wines/1/edit
@@ -25,7 +38,7 @@ class WinesController < ApplicationController
   # POST /wines.json
   def create
     @wine = Wine.new(wine_params)
-
+    
     respond_to do |format|
       if @wine.save
         format.html { redirect_to @wine, notice: 'Wine was successfully created.' }
@@ -69,6 +82,8 @@ class WinesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def wine_params
-      params.require(:wine).permit(:name, :price)
+      params.require(:wine).permit(:name, :price, :score_id,
+      assemblies_attributes: [:id,:strain_id, :wine_id, :percentage],
+      scores_attributes: [:id, :enologist_id, :grade, :wine_id])
     end
 end
