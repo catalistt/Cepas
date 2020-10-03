@@ -14,6 +14,7 @@ class StrainsController < ApplicationController
 
   # GET /strains/new
   def new
+    redirect_to wines_path unless current_user&.admin?
     @strain = Strain.new
   end
 

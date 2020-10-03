@@ -19,9 +19,11 @@
         <td><%= wine.name %></td>
         <td><%= wine.price %></td>
         <td><%= wine.strains_detail %></td>
-        <td><%= wine.scores.reject{|n| n.grade == 0}.map{ |n| "#{n.grade}" }.join(' , ') %></td>
-        <td><%= link_to 'Edit', edit_wine_path(wine) %></td>
-        <td><%= link_to 'Destroy', wine, method: :delete, data: { confirm: 'Estas seguro que deseas eliminar el registro?' } %></td>
+        <% if current_user&.admin? %>
+          <td><%= wine.scores.reject{|n| n.grade == 0}.map{ |n| "#{n.grade}" }.join(' , ') %></td>
+          <td><%= link_to 'Edit', edit_wine_path(wine) %></td>
+          <td><%= link_to 'Destroy', wine, method: :delete, data: { confirm: 'Estas seguro que deseas eliminar el registro?' } %></td>
+        <%end%>      
       </tr>
     <% end %>
   </tbody>

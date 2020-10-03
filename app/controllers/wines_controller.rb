@@ -15,6 +15,7 @@ class WinesController < ApplicationController
 
   # GET /wines/new
   def new
+    redirect_to wines_path unless current_user&.admin?
     @wine = Wine.new
     @strains = Strain.all
     @enologists = Enologist.all.order(:age)
